@@ -1,0 +1,6 @@
+rulesets:
+  - javascript-client-security
+  - javascript-inclusive
+  - javascript-best-pratices
+  - javascript-security
+  - testing-library

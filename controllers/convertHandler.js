@@ -8,7 +8,6 @@ function ConvertHandler() {
     }
     else if( (String(result).match(/\//g) || []).length === 1) {
       return eval(String(result))
-
     }
     else {
       return "invalid number";
