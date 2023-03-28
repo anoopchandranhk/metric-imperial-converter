@@ -91,28 +91,28 @@ function ConvertHandler() {
     let result;
     switch(initUnit.toLowerCase()) {
       case "mi":
-        result = Number((initNum * miToKm).toFixed(5));
+        result = (initNum * miToKm);
         break;
       case "km":
-        result = Number((initNum / miToKm).toFixed(5));
+        result = (initNum / miToKm);
         break;
       case "lbs":
-        result = Number((initNum * lbsToKg).toFixed(6));
+        result = (initNum * lbsToKg);
         break;
       case "kg":
-        result = Number((initNum / lbsToKg).toFixed(6));
+        result = (initNum / lbsToKg);
         break;
       case "gal":
-        result = Number((initNum * galToL).toFixed(5));
+        result = (initNum * galToL);
         break;
       case "l":
-        result = Number((initNum / galToL).toFixed(5));
+        result = (initNum / galToL);
         break;
       default:
         result = "invalid unit";
     }
     
-    return result;
+    return Number(result.toFixed(5));
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {

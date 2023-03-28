@@ -107,14 +107,14 @@ test('Convert km to mi', function(done) {
 // convertHandler should correctly convert lbs to kg.
 test('Convert lbs to kg', function(done) {
     let input = 'lbs';
-    assert.equal(convertHandler.convert(1, input), 0.453592);
+    assert.equal(convertHandler.convert(1, input), 0.45359);
     done();
 })
 
 // convertHandler should correctly convert kg to lbs.
 test('Convert kg to lbs', function(done) {
     let input = 'kg';
-    assert.equal(convertHandler.convert(1, input), 2.204624);
+    assert.equal(convertHandler.convert(1, input), 2.20462);
     done();
 })
 

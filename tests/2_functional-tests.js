@@ -51,9 +51,9 @@ suite('Functional Tests', function () {
                 assert.equal(res.type, 'application/json');
                 assert.equal(res.body.initNum, 1);
                 assert.equal(res.body.initUnit, 'lbs');
-                assert.approximately(res.body.returnNum, 0.453592, 0.1);
+                assert.approximately(res.body.returnNum, 0.45359, 0.1);
                 assert.equal(res.body.returnUnit, 'kg');
-                assert.equal(res.body.string, '1 pounds converts to 0.453592 kilograms');
+                assert.equal(res.body.string, '1 pounds converts to 0.45359 kilograms');
                 done();
             });
     });
@@ -111,9 +111,9 @@ suite('Functional Tests', function () {
                 assert.equal(res.type, 'application/json');
                 assert.equal(res.body.initNum, 1);
                 assert.equal(res.body.initUnit, 'kg');
-                assert.approximately(res.body.returnNum, 2.204624, 0.1);
+                assert.approximately(res.body.returnNum, 2.20462, 0.1);
                 assert.equal(res.body.returnUnit, 'lbs');
-                assert.equal(res.body.string, '1 kilograms converts to 2.204624 pounds');
+                assert.equal(res.body.string, '1 kilograms converts to 2.20462 pounds');
                 done();
             });
     });
