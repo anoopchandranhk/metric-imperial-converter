@@ -23,6 +23,41 @@ suite('Functional Tests', function () {
             });
     });
 
+    // Convert a valid input such as gal: GET request to /api/convert.
+    test('Convert a valid input such as gal', function (done) {
+        chai.request(server)
+            .get('/api/convert')
+            .query({ input: 'gal' })
+            .end(function (err, res) {
+                assert.equal(res.status, 200);
+                assert.equal(res.type, 'application/json');
+                assert.equal(res.body.initNum, 1);
+                assert.equal(res.body.initUnit, 'gal');
+                assert.approximately(res.body.returnNum, 3.78541, 0.1);
+                assert.equal(res.body.returnUnit, 'L');
+                assert.equal(res.body.string, '1 gallons converts to 3.78541 liters');
+                done();
+            });
+    });
+
+
+    // Convert a valid input such as lbs: GET request to /api/convert.
+    test('Convert a valid input such as lbs', function (done) {
+        chai.request(server)
+            .get('/api/convert')
+            .query({ input: 'lbs' })
+            .end(function (err, res) {
+                assert.equal(res.status, 200);
+                assert.equal(res.type, 'application/json');
+                assert.equal(res.body.initNum, 1);
+                assert.equal(res.body.initUnit, 'lbs');
+                assert.approximately(res.body.returnNum, 0.453592, 0.1);
+                assert.equal(res.body.returnUnit, 'kg');
+                assert.equal(res.body.string, '1 pounds converts to 0.453592 kilograms');
+                done();
+            });
+    });
+
 
 
     // Convert an invalid input such as 32g: GET request to /api/convert.

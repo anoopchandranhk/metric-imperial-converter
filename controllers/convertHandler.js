@@ -6,23 +6,7 @@ function ConvertHandler() {
     if(!isNaN(result) && !isNaN(parseFloat(result))){
       return Number(result);
     }
-    else if( String(result).includes("/") ) {
-      // let split = result.split("/");
-      // if( split.length > 2 ) {
-      //   return "invalid number";
-      // }
-      // else if( split[0] == "" || split[1] == "" ) {
-      //   return "invalid number";
-      // }
-      // else if( isNaN(split[0]) || isNaN(split[1]) ) {
-      //   return "invalid number";
-      // }
-      // else if( isNaN(parseFloat(split[0])) || isNaN(parseFloat(split[1])) ) {
-      //   return "invalid number";
-      // }
-      // else {
-      //   return parseFloat(split[0]) / parseFloat(split[1]);
-      // }
+    else if( (String(result).match(/\//g) || []).length === 1) {
       return eval(String(result))
 
     }
@@ -32,13 +16,20 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    let result = input.match(/[a-z]/gi);    
-    return result.join("");
+    let units = ["mi", "km", "lbs", "kg", "gal", "l"]
+    let result = input.match(/[a-z]/gi); 
+    if(!result || !units.includes(result.join("").toLowerCase())) {
+      return "invalid unit";
+    }
+    else {
+      return result.join("") ==="L" || result.join("") ==="l" ? "L" : result.join("").toLowerCase();      
+    }
+
   };
   
   this.getReturnUnit = function(initUnit) {
     let result;
-    switch(initUnit) {
+    switch(initUnit.toLowerCase()) {
       case "mi":
         result = "km";
         break;
@@ -54,7 +45,7 @@ function ConvertHandler() {
       case "gal":
         result = "L";
         break;
-      case "L":
+      case "l":
         result = "gal";
         break;
       default:
@@ -66,7 +57,7 @@ function ConvertHandler() {
 
   this.spellOutUnit = function(unit) {
     let result;
-    switch(unit) {
+    switch(unit.toLowerCase()) {
       case "mi":
         result = "miles";
         break;
@@ -82,7 +73,7 @@ function ConvertHandler() {
       case "gal":
         result = "gallons";
         break;
-      case "L":
+      case "l":
         result = "liters";
         break;
       default:
@@ -98,7 +89,7 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
     let result;
-    switch(initUnit) {
+    switch(initUnit.toLowerCase()) {
       case "mi":
         result = Number((initNum * miToKm).toFixed(5));
         break;
@@ -114,7 +105,7 @@ function ConvertHandler() {
       case "gal":
         result = Number((initNum * galToL).toFixed(5));
         break;
-      case "L":
+      case "l":
         result = Number((initNum / galToL).toFixed(5));
         break;
       default:
