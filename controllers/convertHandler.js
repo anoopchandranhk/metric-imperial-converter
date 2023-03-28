@@ -7,7 +7,8 @@ function ConvertHandler() {
       return Number(result);
     }
     else if( (String(result).match(/\//g) || []).length === 1) {
-      return eval(String(result))
+      let newResult = result.split("/")
+      return Number(newResult[0]) / Number(newResult[1])
     }
     else {
       return "invalid number";
@@ -16,12 +17,12 @@ function ConvertHandler() {
   
   this.getUnit = function(input) {
     let units = ["mi", "km", "lbs", "kg", "gal", "l"]
-    let result = input.match(/[a-z]/gi); 
-    if(!result || !units.includes(result.join("").toLowerCase())) {
+    let result = input.match(/[a-z]/gi).join(""); 
+    if(!result || !units.includes(result.toLowerCase())) {
       return "invalid unit";
     }
     else {
-      return result.join("") ==="L" || result.join("") ==="l" ? "L" : result.join("").toLowerCase();      
+      return result ==="L" || result ==="l" ? "L" : result.toLowerCase();      
     }
 
   };
@@ -78,7 +79,6 @@ function ConvertHandler() {
       default:
         result = "invalid unit";
     }
-
     
     return result;
   };
@@ -90,22 +90,22 @@ function ConvertHandler() {
     let result;
     switch(initUnit.toLowerCase()) {
       case "mi":
-        result = (initNum * miToKm);
+        result = initNum * miToKm;
         break;
       case "km":
-        result = (initNum / miToKm);
+        result = initNum / miToKm;
         break;
       case "lbs":
-        result = (initNum * lbsToKg);
+        result = initNum * lbsToKg;
         break;
       case "kg":
-        result = (initNum / lbsToKg);
+        result = initNum / lbsToKg;
         break;
       case "gal":
-        result = (initNum * galToL);
+        result = initNum * galToL;
         break;
       case "l":
-        result = (initNum / galToL);
+        result = initNum / galToL;
         break;
       default:
         result = "invalid unit";
@@ -117,7 +117,6 @@ function ConvertHandler() {
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result;
     result = initNum + " " + this.spellOutUnit(initUnit) + " converts to " + returnNum + " " + this.spellOutUnit(returnUnit);
-
     
     return result;
   };
