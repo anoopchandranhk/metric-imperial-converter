@@ -1,10 +1,32 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result = input.match(/[^a-z]/gi).join("");
+    let result = input.match(/[^a-z]/gi);
+    result = result ? result.join("") : 1;
     if(!isNaN(result) && !isNaN(parseFloat(result))){
-      return result;
-    } else {
+      return Number(result);
+    }
+    else if( String(result).includes("/") ) {
+      // let split = result.split("/");
+      // if( split.length > 2 ) {
+      //   return "invalid number";
+      // }
+      // else if( split[0] == "" || split[1] == "" ) {
+      //   return "invalid number";
+      // }
+      // else if( isNaN(split[0]) || isNaN(split[1]) ) {
+      //   return "invalid number";
+      // }
+      // else if( isNaN(parseFloat(split[0])) || isNaN(parseFloat(split[1])) ) {
+      //   return "invalid number";
+      // }
+      // else {
+      //   return parseFloat(split[0]) / parseFloat(split[1]);
+      // }
+      return eval(String(result))
+
+    }
+    else {
       return "invalid number";
     }
   };
@@ -76,23 +98,27 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
     let result;
-    if(initUnit === "mi"){
-      result = initNum * miToKm;
-    }
-    if(initUnit === "km"){
-      result = initNum / miToKm;
-    }
-    if(initUnit === "lbs"){
-      result = initNum * lbsToKg;
-    }
-    if(initUnit === "kg"){
-      result = initNum / lbsToKg;
-    }
-    if(initUnit === "gal"){
-      result = initNum * galToL;
-    }
-    if(initUnit === "L"){
-      result = initNum / galToL;
+    switch(initUnit) {
+      case "mi":
+        result = Number((initNum * miToKm).toFixed(5));
+        break;
+      case "km":
+        result = Number((initNum / miToKm).toFixed(5));
+        break;
+      case "lbs":
+        result = Number((initNum * lbsToKg).toFixed(6));
+        break;
+      case "kg":
+        result = Number((initNum / lbsToKg).toFixed(6));
+        break;
+      case "gal":
+        result = Number((initNum * galToL).toFixed(5));
+        break;
+      case "L":
+        result = Number((initNum / galToL).toFixed(5));
+        break;
+      default:
+        result = "invalid unit";
     }
     
     return result;
