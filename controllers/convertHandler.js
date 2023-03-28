@@ -1,15 +1,18 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result;
-    
-    return result;
+    let result = input.match(/[^a-z]/gi);
+    if(!isNaN(result) && !isNaN(parseFloat(result))){
+      return result.join("");
+    } else {
+      return "invalid number";
+    }
   };
   
   this.getUnit = function(input) {
-    let result;
+    let result = input.match(/[a-z]/gi);
     
-    return result;
+    return result.join("");
   };
   
   this.getReturnUnit = function(initUnit) {
