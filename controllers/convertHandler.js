@@ -30,9 +30,9 @@ function ConvertHandler() {
         result = "lbs";
         break;
       case "gal":
-        result = "l";
+        result = "L";
         break;
-      case "l":
+      case "L":
         result = "gal";
         break;
       default:
@@ -60,7 +60,7 @@ function ConvertHandler() {
       case "gal":
         result = "gallons";
         break;
-      case "l":
+      case "L":
         result = "liters";
         break;
       default:
@@ -91,7 +91,7 @@ function ConvertHandler() {
     if(initUnit === "gal"){
       result = initNum * galToL;
     }
-    if(initUnit === "l"){
+    if(initUnit === "L"){
       result = initNum / galToL;
     }
     
